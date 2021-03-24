@@ -2,18 +2,16 @@
 
 ## users テーブル
 
-| Column          | Type    | Options     |
-| --------------- | ------- | ----------- |
-| nickname        | string  | null: false |
-| email           | string  | null: false |
-| password        | string  | null: false |
-| first_name      | string  | null: false |
-| last_name       | string  | null: false |
-| first_name_kana | string  | null: false |
-| last_name_kana  | string  | null: false |
-| birth_year      | integer | null: false |
-| birth_month     | integer | null: false |
-| birth_day       | integer | null: false |
+| Column             | Type    | Options                   |
+| ------------------ | ------- | ------------------------- |
+| nickname           | string  | null: false               |
+| email              | string  | null: false, unique: true |
+| encrypted_password | string  | null: false               |
+| first_name         | string  | null: false               |
+| last_name          | string  | null: false               |
+| first_name_kana    | string  | null: false               |
+| last_name_kana     | string  | null: false               |
+| birthday           | date    | null: false               |
 
 ### Association
 
@@ -24,32 +22,34 @@
 
 ## items テーブル
 
-| Column             | Type    | Options     |
-| ------------------ | ------- | ----------- |
-| name               | string  | null: false |
-| text               | text    | null: false |
-| category           | string  | null: false |
-| status             | string  | null: false |
-| shipping_charges   | string  | null: false |
-| shipping_area      | string  | null: false |
-| days_to_ship       | string  | null: false |
-| price              | integer | null: false |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| name               | string     | null: false                    |
+| text               | text       | null: false                    |
+| category_id        | integer    | null: false                    |
+| status_id          | integer    | null: false                    |
+| shipping_charges_id| integer    | null: false                    |
+| shipping_area_id   | integer    | null: false                    |
+| days_to_ship_id    | integer    | null: false                    |
+| price              | integer    | null: false                    |
+| user_id            | references | null: false, foreign_key: true |
+
 ### Association
 
 - has_many :comments
-- has_one  :purchases
+- has_one  :purchase
 - belongs_to :user
 
 ## addresses テーブル
 
 | Column       | Type       | Options                        |
 | ------------ | ---------- | ------------------------------ |
-| post_code    | integer    | null: false,                   |
+| post_code    | string     | null: false,                   |
 | prefectures  | string     | null: false,                   |
 | municipality | string     | null: false,                   |
 | address      | integer    | null: false,                   |
 | building     | string     |                                |
-| telephone    | integer    | null: false,                   |
+| telephone    | string     | null: false,                   |
 | user_id      | references | null: false, foreign_key: true |
 
 ### Association
