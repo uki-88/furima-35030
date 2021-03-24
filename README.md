@@ -18,7 +18,7 @@
 - has_many :items
 - has_many :comments
 - has_many :purchases
-- has_one :addresses
+
 
 ## items テーブル
 
@@ -28,11 +28,11 @@
 | text               | text       | null: false                    |
 | category_id        | integer    | null: false                    |
 | status_id          | integer    | null: false                    |
-| shipping_charges_id| integer    | null: false                    |
+| shipping_charge_id | integer    | null: false                    |
 | shipping_area_id   | integer    | null: false                    |
 | days_to_ship_id    | integer    | null: false                    |
 | price              | integer    | null: false                    |
-| user_id            | references | null: false, foreign_key: true |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -42,38 +42,39 @@
 
 ## addresses テーブル
 
-| Column       | Type       | Options                        |
-| ------------ | ---------- | ------------------------------ |
-| post_code    | string     | null: false,                   |
-| prefectures  | string     | null: false,                   |
-| municipality | string     | null: false,                   |
-| address      | integer    | null: false,                   |
-| building     | string     |                                |
-| telephone    | string     | null: false,                   |
-| user_id      | references | null: false, foreign_key: true |
+| Column           | Type       | Options                       |
+| ---------------- | ---------- | ----------------------------- |
+| post_code        | string     | null: false                   |
+| shipping_area_id | integer    | null: false                   |
+| municipality     | string     | null: false                   |
+| address          | integer    | null: false                   |
+| building         | string     |                               |
+| telephone        | string     | null: false                   |
+| user             | references | null: false foreign_key: true |
 
 ### Association
 
-- belongs_to :user
+- belongs_to :purchase
 
 ## purchases テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
-| user_id | references | null: false, foreign_key: true |
-| item_id | references | null: false, foreign_key: true |
+| user    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :item
 - belongs_to :user
+- has_one :address
 
 
 ## comments テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
-| text    | text       | null: false,                   |
+| text    | text       | null: false                    |
 | user_id | references | null: false, foreign_key: true |
 | item_id | references | null: false, foreign_key: true |
 
