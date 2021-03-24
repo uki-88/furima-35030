@@ -47,7 +47,7 @@
 | post_code        | string     | null: false                   |
 | shipping_area_id | integer    | null: false                   |
 | municipality     | string     | null: false                   |
-| address          | integer    | null: false                   |
+| address          | string     | null: false                   |
 | building         | string     |                               |
 | telephone        | string     | null: false                   |
 | user             | references | null: false foreign_key: true |
@@ -75,8 +75,8 @@
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
 | text    | text       | null: false                    |
-| user_id | references | null: false, foreign_key: true |
-| item_id | references | null: false, foreign_key: true |
+| user    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
 
 ### Association
 
