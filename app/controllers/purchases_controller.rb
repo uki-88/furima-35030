@@ -1,6 +1,8 @@
 class PurchasesController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :find_params, only: [:index, :create]
-
+  before_action :move_to_top, only: [:index, :create]
+  
   def index
     @purchase_address = PurchaseAddress.new
   end
@@ -35,6 +37,12 @@ end
 
 def find_params
   @item = Item.find(params[:item_id])
+end
+
+def move_to_top
+  if @item.user_id == current_user.id || @item.purchase.present?
+    redirect_to root_path
+  end
 end
 
 end
