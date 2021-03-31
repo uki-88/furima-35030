@@ -47,7 +47,7 @@ end
   end
 
   def move_to_index
-    unless @item.user_id == current_user.id
+    unless @item.user_id == current_user.id || @item.purchase == nil
       redirect_to action: :index 
     end
   end
