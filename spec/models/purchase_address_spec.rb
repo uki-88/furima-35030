@@ -21,7 +21,7 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'post_codeが空では保存できないこと' do
         @purchase_address.post_code = ''
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Post code can't be blank", 'Post code is invalid')
+        expect(@purchase_address.errors.full_messages).to include("Post code can't be blank")
       end
       it 'post_codeにハイフンがなければ保存できないこと' do
         @purchase_address.post_code = '1234567'
@@ -31,8 +31,7 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'shipping_area_idが空では保存できないこと' do
         @purchase_address.shipping_area_id = ''
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Shipping area can't be blank",
-                                                                  "Shipping area can't be blank")
+        expect(@purchase_address.errors.full_messages).to include("Shipping area can't be blank")
       end
       it 'shipping_are_idの1(--)を選択すると保存できないこと' do
         @purchase_address.shipping_area_id = 1
@@ -52,7 +51,7 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'telephoneが空では保存できないこと' do
         @purchase_address.telephone = ''
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Telephone can't be blank", 'Telephone is invalid')
+        expect(@purchase_address.errors.full_messages).to include("Telephone can't be blank")
       end
       it 'telephoneは英数混合では登録できないこと' do
         @purchase_address.telephone = 'a0a0a0a0a0a'
