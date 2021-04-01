@@ -14,4 +14,3 @@ FactoryBot.define do
     birthday              { Faker::Date.backward }
   end
 end
-
